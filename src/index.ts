@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { getMasterArticlesWithMasterId } from "./masterArticles/master-articles";
 import { MasterArticle } from "./masterArticles/MasterArticle";
 import { syncBlogPlatformsWithMasters } from "./sync/sync";
