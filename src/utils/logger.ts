@@ -1,5 +1,5 @@
 import chalk from "chalk";
-const appName = "ProBlogger:";
+const appName = "Papertown:";
 
 export function error(message: string) {
   console.log(`${chalk.green(appName)} ${chalk.red(message)}`);

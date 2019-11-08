@@ -6,12 +6,25 @@ import * as frontmatterParser from "frontmatter";
 
 const readDir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
+const exists = util.promisify(fs.exists);
 
 export async function getMasterArticlesWithMasterId(
   rootFolder: string
 ): Promise<MasterArticle[]> {
   const allMasterArticles = await getAllMasterArticles(rootFolder);
   return allMasterArticles.filter(hasMasterId);
+}
+
+export async function rootFolderExists(rootFolder) {
+  return await exists(rootFolder);
+}
+
+/**
+ * Check if a masterid is used more than once
+ */
+export function haveDuplicateMasterIDs(masterArticles: MasterArticle[]) {
+  const allIds = masterArticles.map(article => article.frontmatter.masterid);
+  return new Set(allIds).size !== allIds.length;
 }
 
 /**

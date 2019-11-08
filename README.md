@@ -14,23 +14,67 @@ For every article it compares the content and then:
 
 ## Todo
 
-[] Add support for canonical urls
-[] Add support for images
+[ ] Add support for canonical urls
+
+[ ] Add support for images
 
 ## Supported blog platforms
 
 - DevTo
 
+## Quick Start
+
+1. Make sure you have the correct folder structure
+
+```
+- blog-articles
+  - article one
+    - index.md
+  - article two
+    - index.md
+```
+
+2. Add a masterid to the articles you want to sync
+
+```markdown
+---
+title: "Sample Blog Post"
+published: false
+description: "This is an example"
+tags: discuss, javascript
+masterid: 123
+---
+
+Lorem Ipsum..
+```
+
+3. Run Papertown with a valid api key
+
+```
+papertown sync --devtoApiKey yourdevtoapikey
+```
+
 ## Configuration
 
-### 1: Use a .env file
+| Config        | Env           | Args        |
+| ------------- | ------------- | ----------- |
+| Root Folder   | ROOT_FOLDER   | rootFolder  |
+| API Key DevTo | DEVTO_API_KEY | devtoApiKey |
 
-````
+### 1: Use args
+
+```
+papertown sync --devtoApiKey yourdevtoapikey
+```
+
+### 2: Use a .env file
+
+```
 DEVTO_API_KEY="yourdevtoapikey"
-````
+```
 
-### 2: Set env variables before running problogger
+### 3: Set env variables before running papertown
 
-````
-DEVTO_API_KEY="yourdevtoapikey" problogger sync
-````
+```
+DEVTO_API_KEY="yourdevtoapikey" papertown sync
+```
