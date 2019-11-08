@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "ncc run src/index.ts",
-    "build": "ncc build src/index.ts -o dist -m",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "build": "ncc build src/index.ts -m",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "prepublish": "rm -rf src blog-articles"
   },
   "author": "",
   "license": "ISC",
