@@ -2,7 +2,7 @@ import { MasterArticle } from "../masterArticles/MasterArticle";
 import { platformDevTo } from "../blogPlatforms/devto/devto";
 import { BlogPlatform } from "../blogPlatforms/blogplatform.interface";
 import { Article } from "../masterArticles/Article";
-import { info } from "../utils/logger";
+import { info, error as logError } from "../utils/logger";
 
 export async function syncBlogPlatformsWithMasters(
   masterArticles: MasterArticle[],
@@ -42,18 +42,26 @@ async function syncBlogPlatformWithMasters(
 
     if (!platformArticle) {
       info(`Create Article`);
-      await platform.create({
-        fullContent: masterArticle.fullContent
-      });
+      try {
+        await platform.create({
+          fullContent: masterArticle.fullContent
+        });
+      } catch (error) {
+        logError(JSON.stringify(error.response.data));
+      }
     } else if (
       platformArticle &&
       !isArticleUptodate(masterArticle, platformArticle)
     ) {
       info(`Update Article`);
-      await platform.update({
-        ...platformArticle,
-        fullContent: masterArticle.fullContent
-      });
+      try {
+        await platform.update({
+          ...platformArticle,
+          fullContent: masterArticle.fullContent
+        });
+      } catch (error) {
+        logError(JSON.stringify(error.response.data));
+      }
     } else {
       info("Article is up to date");
     }

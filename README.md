@@ -14,8 +14,6 @@ For every article it compares the content and then:
 
 ## Todo
 
-[ ] Add support for canonical urls
-
 [ ] Add support for images
 
 ## Supported blog platforms
@@ -24,7 +22,9 @@ For every article it compares the content and then:
 
 ## Quick Start
 
-1. Make sure you have the correct folder structure
+### 1. Make sure you have the correct folder structure
+
+If the rootfolder is different change it in the config.
 
 ```
 - blog-articles
@@ -34,24 +34,40 @@ For every article it compares the content and then:
     - index.md
 ```
 
-2. Add a masterid to the articles you want to sync
+### 2. Add a masterid to the articles you want to sync
 
 ```markdown
 ---
 title: "Sample Blog Post"
-published: false
-description: "This is an example"
-tags: discuss, javascript
 masterid: 123
 ---
-
-Lorem Ipsum..
 ```
 
-3. Run Papertown with a valid api key
+### 3. Add a canonical_url to link back to your personal blog
+
+```markdown
+---
+title: "Sample Blog Post"
+masterid: 123
+canonical_url: "url to this blog article"
+---
+```
+
+### 4. Add a published field to create a draft
+
+```markdown
+---
+title: "Sample Blog Post"
+masterid: 123
+canonical_url: "url to this blog article"
+published: false
+---
+```
+
+### 5. Run Papertown with a valid api key
 
 ```
-papertown sync --devtoApiKey yourdevtoapikey
+papertown sync --devtoApiKey apikey
 ```
 
 ## Configuration
@@ -64,7 +80,7 @@ papertown sync --devtoApiKey yourdevtoapikey
 ### 1: Use args
 
 ```
-papertown sync --devtoApiKey yourdevtoapikey
+papertown sync --devtoApiKey apikey
 ```
 
 ### 2: Use a .env file

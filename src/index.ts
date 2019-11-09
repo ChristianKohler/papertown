@@ -21,7 +21,7 @@ Options
   --devtoApiKey  Set the Api Key for DevTo
 
 Examples
-  $ foo sync --devtoApiKey asdf234asdf
+  $ papertown sync --devtoApiKey yourapikey
 `;
 
 async function main() {
@@ -39,7 +39,10 @@ async function main() {
    * Stop if root folder does not exist
    */
   if (!(await rootFolderExists(config.rootFolder))) {
-    error(`Root folder not found: ${config.rootFolder}`);
+    error(`
+      Root folder not found: ${config.rootFolder}
+      Run $ papertown sync --rootFolder yourrootfolder
+    `);
     return;
   }
 
@@ -54,7 +57,11 @@ async function main() {
    * Stop if no master articles were found
    */
   if (masterArticles.length === 0) {
-    error("No articles found with masterid");
+    error(`
+      No articles found with masterid.
+      Add a masterid to the frontmatter of post
+      you want to sync
+    `);
     return;
   }
 
