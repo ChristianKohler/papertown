@@ -36,6 +36,8 @@ If the rootfolder is different change it in the config.
 
 ### 2. Add a masterid to the articles you want to sync
 
+**Important:** Posts without a masterid are ignored.
+
 ```markdown
 ---
 title: "Sample Blog Post"
