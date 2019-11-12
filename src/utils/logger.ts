@@ -8,3 +8,7 @@ export function error(message: string) {
 export function info(message: string) {
   console.log(`${chalk.green(appName)} ${chalk.cyan(message)}`);
 }
+
+export function warn(message: string) {
+  console.log(`${chalk.green(appName)} ${chalk.yellow(message)}`);
+}

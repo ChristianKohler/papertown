@@ -22,7 +22,8 @@ async function getAll(apiKey: string): Promise<DevToArticle[]> {
     return {
       ...article,
       content,
-      frontmatter
+      frontmatter,
+      fullContent: article.body_markdown
     };
   });
 }

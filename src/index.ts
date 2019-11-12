@@ -14,11 +14,12 @@ Usage
   $ papertown <command>
   
 Commands
-  sync           Runs a sync
+  sync                  Runs a sync
 
 Options
-  --rootFolder   Change the root folder
-  --devtoApiKey  Set the Api Key for DevTo
+  --rootFolder          Change the root folder
+  --devtoApiKey         Set the Api Key for DevTo
+  --imageRootUrlGithub  Replace relative images with this url
 
 Examples
   $ papertown sync --devtoApiKey yourapikey
@@ -50,7 +51,8 @@ async function main() {
    * Get all articles with an masterid in the frontmatter
    */
   const masterArticles = await getMasterArticlesWithMasterId(
-    config.rootFolder
+    config.rootFolder,
+    config.imageRootUrlGithub
   );
 
   /**

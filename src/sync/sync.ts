@@ -87,5 +87,5 @@ function isArticleUptodate(
   masterArticle: MasterArticle,
   devToArticle: Article
 ) {
-  return masterArticle.content === devToArticle.content;
+  return masterArticle.fullContent === devToArticle.fullContent;
 }

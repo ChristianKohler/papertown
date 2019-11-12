@@ -3,15 +3,17 @@ import * as util from "util";
 import * as path from "path";
 import { MasterArticle } from "./MasterArticle";
 import * as frontmatterParser from "frontmatter";
+import { convertRelativeToGithubRaw } from "./image-links-converter";
 
 const readDir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
 const exists = util.promisify(fs.exists);
 
 export async function getMasterArticlesWithMasterId(
-  rootFolder: string
+  rootFolder: string,
+  baseUrl: string
 ): Promise<MasterArticle[]> {
-  const allMasterArticles = await getAllMasterArticles(rootFolder);
+  const allMasterArticles = await getAllMasterArticles(rootFolder, baseUrl);
   return allMasterArticles.filter(hasMasterId);
 }
 
@@ -37,21 +39,28 @@ export function haveDuplicateMasterIDs(masterArticles: MasterArticle[]) {
  * @param rootFolder root folder for all blog article
  */
 export async function getAllMasterArticles(
-  rootFolder: string
+  rootFolder: string,
+  baseUrl: string
 ): Promise<MasterArticle[]> {
   const articleFolderNames = await readDir(path.normalize(rootFolder));
   return Promise.all(
     articleFolderNames.map(foldername => {
       const fileName = path.join(rootFolder, foldername, "index.md");
-      return folderNameToMasterArticle(fileName);
+      return folderNameToMasterArticle(fileName, baseUrl);
     })
   );
 }
 
 async function folderNameToMasterArticle(
-  fileName: string
+  fileName: string,
+  baseUrl: string
 ): Promise<MasterArticle> {
-  const fullContent = await readFile(fileName, { encoding: "utf8" });
+  const fullContentOriginal = await readFile(fileName, { encoding: "utf8" });
+  const fullContent = convertRelativeToGithubRaw(
+    fullContentOriginal,
+    baseUrl,
+    fileName
+  );
   const parsedFile = frontmatterParser(fullContent);
   const { data: frontmatter, content } = parsedFile;
 

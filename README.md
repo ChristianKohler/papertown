@@ -74,10 +74,11 @@ papertown sync --devtoApiKey apikey
 
 ## Configuration
 
-| Config        | Env           | Args        |
-| ------------- | ------------- | ----------- |
-| Root Folder   | ROOT_FOLDER   | rootFolder  |
-| API Key DevTo | DEVTO_API_KEY | devtoApiKey |
+| Config                | Env                   | Args               |
+| --------------------- | --------------------- | ------------------ |
+| Root Folder           | ROOT_FOLDER           | rootFolder         |
+| API Key DevTo         | DEVTO_API_KEY         | devtoApiKey        |
+| Github URL for images | IMAGE_ROOT_URL_GITHUB | imageRootUrlGithub |
 
 ### 1: Use args
 
@@ -95,4 +96,45 @@ DEVTO_API_KEY="yourdevtoapikey"
 
 ```
 DEVTO_API_KEY="yourdevtoapikey" papertown sync
+```
+
+## Relative Images
+
+Papertown can replace relative images with absolute github urls.
+
+Requirements are:
+
+- Github repo is public
+- imageRootUrlGithub is set
+
+### Example
+
+Run:
+
+```
+papertown sync
+  --rootFolder content/posts
+  --imageRootUrlGithub https://raw.githubusercontent.com/ChristianKohler/Homepage/master
+```
+
+and the url in the file (content/posts/first-post/index.html)
+
+```
+./images/hero.png
+```
+
+will be replace with:
+
+```
+https://raw.githubusercontent.com/ChristianKohler/Homepage/master/content/posts/first-post/images/hero.png
+```
+
+## Dev.to
+
+### Add coverimage
+
+Can be a relative image, papertown will resolve it.
+
+```
+cover_image: direct_url_to_image.jpg
 ```
