@@ -12,10 +12,6 @@ For every article it compares the content and then:
     - if article hasn't changed -> do nothing
     - if article has changed -> update
 
-## Todo
-
-[ ] Add support for images
-
 ## Supported blog platforms
 
 - DevTo
