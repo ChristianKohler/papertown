@@ -20,6 +20,7 @@ Options
   --rootFolder          Change the root folder
   --devtoApiKey         Set the Api Key for DevTo
   --imageRootUrlGithub  Replace relative images with this url
+  --dryRun              Don't push changes to blog platforms
 
 Examples
   $ papertown sync --devtoApiKey yourapikey

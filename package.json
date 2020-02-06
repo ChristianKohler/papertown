@@ -7,7 +7,8 @@
     "start": "ncc run src/index.ts",
     "build": "ncc build src/index.ts -m",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "link": "cd dist && npm link papertown"
   },
   "files": [
     "dist/*"
