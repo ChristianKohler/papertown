@@ -59,4 +59,17 @@ describe("convert relative to github raw", () => {
         ---
     `);
   });
+
+  it("should work with underscore in a link", () => {
+    // arrange
+    const content = stripIndents` 
+      ![alt text]("./images/logo_1.png" "Logo")
+    `;
+    // act
+    const result = convertRelativeToGithubRaw(content, baseUrl, mdPath);
+    // assert
+    expect(result).toBe(stripIndents`
+      ![alt text]("https://abc.com/files/posts/first-post/images/logo_1.png" "Logo")
+    `);
+  });
 });
