@@ -1,13 +1,14 @@
 {
   "name": "papertown",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "start": "ncc run src/index.ts",
     "build": "ncc build src/index.ts -m",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "link": "cd dist && npm link papertown"
   },
   "files": [
     "dist/*"

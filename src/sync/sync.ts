@@ -6,14 +6,15 @@ import { info, error as logError } from "../utils/logger";
 
 export async function syncBlogPlatformsWithMasters(
   masterArticles: MasterArticle[],
-  config: { devtoApiKey: any }
+  config: { devtoApiKey: any; dryRun: boolean }
 ) {
   /**
    * DEV.to
    */
   await syncBlogPlatformWithMasters(
     masterArticles,
-    platformDevTo(config.devtoApiKey)
+    platformDevTo(config.devtoApiKey),
+    config.dryRun
   );
 }
 
@@ -24,9 +25,14 @@ export async function syncBlogPlatformsWithMasters(
  */
 async function syncBlogPlatformWithMasters(
   masterArticles: MasterArticle[],
-  platform: BlogPlatform
+  platform: BlogPlatform,
+  dryRun: boolean = false
 ) {
   info(`Syncing Platform ${platform.name}`);
+
+  if (dryRun) {
+    info(`Running in dry run mode`);
+  }
 
   const platformArticles = await platform.getAll();
 
@@ -42,25 +48,29 @@ async function syncBlogPlatformWithMasters(
 
     if (!platformArticle) {
       info(`Create Article`);
-      try {
-        await platform.create({
-          fullContent: masterArticle.fullContent
-        });
-      } catch (error) {
-        logError(JSON.stringify(error.response.data));
+      if (!dryRun) {
+        try {
+          await platform.create({
+            fullContent: masterArticle.fullContent
+          });
+        } catch (error) {
+          logError(JSON.stringify(error.response.data));
+        }
       }
     } else if (
       platformArticle &&
       !isArticleUptodate(masterArticle, platformArticle)
     ) {
       info(`Update Article`);
-      try {
-        await platform.update({
-          ...platformArticle,
-          fullContent: masterArticle.fullContent
-        });
-      } catch (error) {
-        logError(JSON.stringify(error.response.data));
+      if (!dryRun) {
+        try {
+          await platform.update({
+            ...platformArticle,
+            fullContent: masterArticle.fullContent
+          });
+        } catch (error) {
+          logError(JSON.stringify(error.response.data));
+        }
       }
     } else {
       info("Article is up to date");

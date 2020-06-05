@@ -1,7 +1,7 @@
 import { join } from "path";
 import { warn } from "../utils/logger";
 
-const relativeUrlRegex = /(\.{1,2}\/)([a-z0-9-\/_]*)\.([a-z0-9]{3})/g;
+const relativeUrlRegex = /(\.{1,2}\/)([a-zA-Z0-9-\/_]*)\.([a-zA-Z0-9]{3})/g;
 
 /**
  * From this: ./images/hero.png

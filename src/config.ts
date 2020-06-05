@@ -25,6 +25,12 @@ export const config = convict({
     default: "",
     env: "IMAGE_ROOT_URL_GITHUB",
     arg: "imageRootUrlGithub"
+  },
+  dryRun: {
+    doc: "Only outputs the changes and doesn't run create or update",
+    format: Boolean,
+    default: false,
+    env: "DRY_RUN"
   }
 })
   .validate()

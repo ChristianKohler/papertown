@@ -75,6 +75,7 @@ papertown sync --devtoApiKey apikey
 | Root Folder           | ROOT_FOLDER           | rootFolder         |
 | API Key DevTo         | DEVTO_API_KEY         | devtoApiKey        |
 | Github URL for images | IMAGE_ROOT_URL_GITHUB | imageRootUrlGithub |
+| Dry Run               | DRY_RUN               | dryRun             |
 
 ### 1: Use args
 
@@ -93,6 +94,10 @@ DEVTO_API_KEY="yourdevtoapikey"
 ```
 DEVTO_API_KEY="yourdevtoapikey" papertown sync
 ```
+
+## Dry Run
+
+Use dryRun to not create or update the post and only log what would happen.
 
 ## Relative Images
 
