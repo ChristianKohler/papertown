@@ -1,6 +1,6 @@
 {
   "name": "papertown",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -10,6 +10,7 @@
     "test:watch": "jest --watch",
     "link": "cd dist && npm link papertown"
   },
+  "homepage": "https://github.com/ChristianKohler/papertown",
   "files": [
     "dist/*"
   ],
