@@ -139,3 +139,22 @@ Can be a relative image, papertown will resolve it.
 ```
 cover_image: direct_url_to_image.jpg
 ```
+
+## Papertown API (BETA)
+
+Papertown can be used within your node script.
+
+### Example
+
+```javascript
+const { sync } = require("papertown");
+
+const config = {
+  rootFolder: "my-root-folder",
+  devtoApiKey: "my-key",
+  imageRootUrlGithub: "",
+  dryRun: false,
+};
+
+await sync(config);
+```
