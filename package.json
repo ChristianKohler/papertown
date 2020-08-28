@@ -1,21 +1,24 @@
 {
   "name": "papertown",
-  "version": "1.2.1",
+  "version": "1.3.3",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
+  "bin": {
+    "papertown": "dist/bin/index.js"
+  },
   "scripts": {
     "start": "ncc run src/index.ts",
-    "build": "ncc build src/index.ts -m",
+    "build": "npm run build:bin && npm run build:lib",
+    "build:bin": "ncc build src/bin/index.ts -o dist/bin -m",
+    "build:lib": "ncc build src/index.ts -o dist/lib -m",
     "test": "jest",
     "test:watch": "jest --watch",
     "link": "cd dist && npm link papertown"
   },
+  "homepage": "https://github.com/ChristianKohler/papertown",
   "files": [
     "dist/*"
   ],
-  "bin": {
-    "papertown": "dist/index.js"
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
