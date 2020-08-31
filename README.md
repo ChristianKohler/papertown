@@ -2,6 +2,8 @@
 
 Papertown syncs you personal markdown blog with blog platforms like dev.to.
 
+Best way to get an overview is to read this blog post: https://christiankohler.net/introducing-papertown
+
 ## How does it work
 
 Papertown sync only articles with a masterid in the frontmatter. The masterid helps papertown identify articles.
