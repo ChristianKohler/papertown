@@ -10,11 +10,11 @@ async function getAll(apiKey: string): Promise<DevToArticle[]> {
   const allPublishedPosts = await axios.get<DevToArticle[]>(
     `${apiUrl}/articles/me/all`,
     {
-      headers: { "api-key": apiKey }
+      headers: { "api-key": apiKey },
     }
   );
 
-  return allPublishedPosts.data.map(article => {
+  return allPublishedPosts.data.map((article) => {
     const { data: frontmatter, content } = frontmatterParser(
       article.body_markdown
     );
@@ -23,7 +23,7 @@ async function getAll(apiKey: string): Promise<DevToArticle[]> {
       ...article,
       content,
       frontmatter,
-      fullContent: article.body_markdown
+      fullContent: article.body_markdown,
     };
   });
 }
@@ -34,9 +34,9 @@ async function update(
 ): Promise<AxiosResponse<any>> {
   return await axios.put(
     `${apiUrl}/articles/${devToArticle.id}`,
-    { ...devToArticle, body_markdown: devToArticle.fullContent },
+    { article: { ...devToArticle, body_markdown: devToArticle.fullContent } },
     {
-      headers: { "api-key": apiKey }
+      headers: { "api-key": apiKey },
     }
   );
 }
@@ -49,11 +49,11 @@ async function create(
     `${apiUrl}/articles`,
     {
       article: {
-        body_markdown: createArticle.fullContent
-      }
+        body_markdown: createArticle.fullContent,
+      },
     },
     {
-      headers: { "api-key": apiKey }
+      headers: { "api-key": apiKey },
     }
   );
 }
@@ -63,6 +63,6 @@ export const platformDevTo = (apikey: string): BlogPlatform => {
     name: "DevTo",
     getAll: () => getAll(apikey),
     update: (article: DevToArticle) => update(article, apikey),
-    create: (article: CreateArticle) => create(article, apikey)
+    create: (article: CreateArticle) => create(article, apikey),
   };
 };
