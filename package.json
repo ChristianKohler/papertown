@@ -33,7 +33,7 @@
     "babel-jest": "^24.9.0",
     "chalk": "^2.4.2",
     "common-tags": "^1.8.0",
-    "convict": "^5.2.0",
+    "convict": "^6.2.2",
     "dotenv": "^8.2.0",
     "frontmatter": "0.0.3",
     "jest": "^24.9.0"
